@@ -6,7 +6,7 @@ import requests
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["movie_database"]
 collection = db["movies"]
-api_key = "236b37c7d6ff3d8da9a7927aa0adb108"
+api_key = "XXXXXXXXXX"
 url_template = "https://api.themoviedb.org/3/movie/top_rated?api_key={}&language=en-US&page={}"
 
 
