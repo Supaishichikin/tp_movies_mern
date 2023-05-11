@@ -1,22 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { MongoClient, ObjectId } = require('mongodb');
-
 const app = express();
 const port = 8030;
 const mongoUrl = 'mongodb://localhost:27017';
 const dbName = 'movie_database';
 const collectionName = 'movies';
+const cors = require('cors');
+const corsOptions = {origin: 'http://localhost:3000'}
+
+app.use(cors(corsOptions))
 
 app.use(bodyParser.json());
 
-// Helper function to connect to the MongoDB database
+
 async function connectDB() {
   const client = await MongoClient.connect(mongoUrl);
   return client.db(dbName).collection(collectionName);
 }
 
-// Create a new movie
 app.post('/movies', async (req, res) => {
   try {
     const collection = await connectDB();
